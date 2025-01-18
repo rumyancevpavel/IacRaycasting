@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace IacRaycasting.BasicObjectHit
 {
+	[RequireComponent(typeof(Camera))]
 	public class BasicObjectHitBehaviour : MonoBehaviour
 	{
-		[SerializeField, Range(1, 100)]private float _rayDuration = 10;
+		[SerializeField, Range(1, 100)] private float _rayLength;
 		
 		private Camera _camera;
-		private Ray _ray;
 		
 		private void Start()
 		{
@@ -16,12 +16,12 @@ namespace IacRaycasting.BasicObjectHit
 
 		private void Update()
 		{
-			_ray = new Ray(_camera.transform.position, _camera.transform.forward);
-			if (Physics.Raycast(_ray, out var hit, _rayDuration))
+			var ray = new Ray(_camera.transform.position, _camera.transform.forward);
+			if (Physics.Raycast(ray, out var hit, _rayLength))
 			{
 				Debug.Log($"Hit!!! {hit.transform.gameObject.name}");
 			}
-			Debug.DrawRay(_ray.origin, _ray.direction * _rayDuration, Color.red);
+			Debug.DrawRay(ray.origin, ray.direction * _rayLength, Color.red);
 		}
 	}
 }
