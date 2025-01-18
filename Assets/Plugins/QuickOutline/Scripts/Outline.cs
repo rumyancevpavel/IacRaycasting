@@ -46,7 +46,7 @@ public class Outline : MonoBehaviour
 	private Material outlineFillMaterial;
 	private Material outlineMaskMaterial;
 	private Renderer[] renderers;
-	private bool _isSelected;
+	[SerializeField] private bool _isSelected;
 
 	public Mode OutlineMode
 	{

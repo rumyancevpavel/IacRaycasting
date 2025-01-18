@@ -10,6 +10,7 @@ namespace IacRaycasting.ScreenPointToRay.Scripts
 
 		private Camera _camera;
 		private Outline _currentHighlight;
+		private Outline _currentSelection;
 
 		private void Awake()
 		{
@@ -17,6 +18,12 @@ namespace IacRaycasting.ScreenPointToRay.Scripts
 		}
 
 		private void Update()
+		{
+			HandleHighlight();
+			HandleSelection();
+		}
+
+		private void HandleHighlight(bool debugRay = true)
 		{
 			var ray = _camera.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out var hit, _rayLength))
@@ -30,7 +37,28 @@ namespace IacRaycasting.ScreenPointToRay.Scripts
 			{
 				ClearCurrentOutline();
 			}
-			Debug.DrawRay(ray.origin, ray.direction * _rayLength, Color.red);
+
+			if (debugRay)
+			{
+				Debug.DrawRay(ray.origin, ray.direction * _rayLength, Color.red);
+			}
+		}
+
+		private void HandleSelection()
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				if (_currentHighlight != null)
+				{
+					_currentSelection?.Deselect();
+					_currentSelection = _currentHighlight;
+					_currentSelection.Select();
+				}
+				else
+				{
+					_currentSelection?.Deselect();
+				}
+			}
 		}
 
 		private void SetCurrentOutline(Transform targetTransform)
