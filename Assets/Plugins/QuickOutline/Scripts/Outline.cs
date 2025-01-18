@@ -45,8 +45,8 @@ public class Outline : MonoBehaviour
 	private bool needsUpdate;
 	private Material outlineFillMaterial;
 	private Material outlineMaskMaterial;
-
 	private Renderer[] renderers;
+	private bool _isSelected;
 
 	public Mode OutlineMode
 	{
@@ -292,15 +292,31 @@ public class Outline : MonoBehaviour
 		}
 	}
 
-	public void On()
+	public void Select()
 	{
-		outlineMode = Mode.OutlineAll;
+		_isSelected = true;
+		Highlight();
+	}
+	
+	public void Deselect()
+	{
+		_isSelected = false;
+		ClearHighlight();
+	}
+
+	public void Highlight()
+	{
+		enabled = true;
 		needsUpdate = true;
 	}
 
-	public void Off()
+	public void ClearHighlight()
 	{
-		outlineMode = Mode.OutlineHidden;
+		if (_isSelected)
+		{
+			return;
+		}
+		enabled = false;
 		needsUpdate = true;
 	}
 

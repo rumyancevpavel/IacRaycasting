@@ -4479,7 +4479,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84a09b2e680410d926ee9cf45176462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rayLength: 10
+  _rayLength: 15
+  _highlightableTag: Highlight
 --- !u!1001 &976616408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5934,7 +5935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7727956294308107449, guid: c480c096bbcec447eb81f68b77268b2a, type: 3}
       propertyPath: outlineMode
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7727956294308107449, guid: c480c096bbcec447eb81f68b77268b2a, type: 3}
       propertyPath: outlineWidth
