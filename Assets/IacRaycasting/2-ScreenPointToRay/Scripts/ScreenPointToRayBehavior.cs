@@ -25,24 +25,15 @@ namespace IacRaycasting.ScreenPointToRay.Scripts
 
 		private void HandleHighlight(bool debugRay = true)
 		{
+			ClearCurrentOutline();
 			var ray = _camera.ScreenPointToRay(Input.mousePosition);
 			if (Physics.Raycast(ray, out var hit, _rayLength))
 			{
 				if (hit.transform.CompareTag(_highlightableTag))
 				{
-					ClearCurrentOutline();
 					SetCurrentOutline(hit.transform);
 				}
-				else
-				{
-					ClearCurrentOutline();
-				}
 			}
-			else
-			{
-				ClearCurrentOutline();
-			}
-
 			if (debugRay)
 			{
 				Debug.DrawRay(ray.origin, ray.direction * _rayLength, Color.red);
