@@ -30,7 +30,12 @@ namespace IacRaycasting.ScreenPointToRay.Scripts
 			{
 				if (hit.transform.CompareTag(_highlightableTag))
 				{
+					ClearCurrentOutline();
 					SetCurrentOutline(hit.transform);
+				}
+				else
+				{
+					ClearCurrentOutline();
 				}
 			}
 			else
