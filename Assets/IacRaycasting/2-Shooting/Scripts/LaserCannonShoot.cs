@@ -12,15 +12,15 @@ namespace IacRaycasting.Aiming
 		private void Update()
 		{
 			AimLogic();
+			ShootLogic();
 		}
 
 		private void AimLogic()
 		{
 			RaycastHit hitInfo;
-			var isSomethingHit = Physics.Raycast(_muzzleTip.position, _muzzleTip.forward, out hitInfo, _rayLength);
-			if (isSomethingHit)
+			if (Physics.Raycast(_muzzleTip.position, _muzzleTip.forward, out hitInfo, _rayLength))
 			{
-				var hitObject = hitInfo.transform.gameObject;
+				var hitObject = hitInfo.transform;
 				_currentHighlight = hitObject.GetComponent<Outline>();
 				if (_currentHighlight != null)
 				{
@@ -33,6 +33,23 @@ namespace IacRaycasting.Aiming
 				{
 					_currentHighlight.ClearHighlight();
 					_currentHighlight = null;
+				}
+			}
+		}
+
+		private void ShootLogic()
+		{
+			if (Input.GetMouseButtonDown(0))
+			{
+				Debug.Log($"[LaserCannon] Shoot!");
+				RaycastHit hitInfo;
+				if (Physics.Raycast(_muzzleTip.position, _muzzleTip.forward, out hitInfo, _rayLength))
+				{
+					var enemyCannonScript = hitInfo.transform.GetComponent<EnemyCannon>();
+					if (enemyCannonScript != null)
+					{
+						enemyCannonScript.Damage(20);
+					}
 				}
 			}
 		}
