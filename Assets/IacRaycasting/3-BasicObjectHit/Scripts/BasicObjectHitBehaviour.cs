@@ -13,15 +13,5 @@ namespace IacRaycasting.BasicObjectHit
 		{
 			_camera = GetComponent<Camera>();
 		}
-
-		private void Update()
-		{
-			var ray = new Ray(_camera.transform.position, _camera.transform.forward);
-			if (Physics.Raycast(ray, out var hit, _rayLength))
-			{
-				Debug.Log($"Hit!!! {hit.transform.gameObject.name}");
-			}
-			Debug.DrawRay(ray.origin, ray.direction * _rayLength, Color.red);
-		}
 	}
 }
