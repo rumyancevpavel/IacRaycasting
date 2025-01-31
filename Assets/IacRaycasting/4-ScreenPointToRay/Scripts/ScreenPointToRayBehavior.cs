@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IacRaycasting.ScreenPointToRay.Scripts
+namespace IacRaycasting.ScreenPointToRay
 {
 	[RequireComponent(typeof(Camera))]
 	public class ScreenPointToRayBehavior : MonoBehaviour
