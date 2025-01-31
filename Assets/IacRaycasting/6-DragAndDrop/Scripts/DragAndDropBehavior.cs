@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IacRaycasting.DragAndDrop.Scripts
+namespace IacRaycasting.DragAndDrop
 {
 	[RequireComponent(typeof(Camera))]
 	public class DragAndDropBehavior : MonoBehaviour

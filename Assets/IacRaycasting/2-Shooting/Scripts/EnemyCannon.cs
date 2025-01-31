@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace IacRaycasting.Aiming
+namespace IacRaycasting.Shooting
 {
 	public class EnemyCannon : MonoBehaviour
 	{
